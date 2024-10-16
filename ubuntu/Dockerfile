@@ -1,4 +1,4 @@
-FROM ubuntu:focal-20240918
+FROM ubuntu:noble-20241011 
 
 ARG MINIFORGE_NAME=Miniforge3
 ARG MINIFORGE_VERSION=24.7.1-2
@@ -24,9 +24,10 @@ RUN apt-get update > /dev/null && \
         wget bzip2 ca-certificates \
         git \
         tini \
+        vim \
         > /dev/null && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
+#rm -rf /var/lib/apt/lists/* && \
     wget --no-hsts --quiet https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/${MINIFORGE_NAME}-${MINIFORGE_VERSION}-Linux-$(uname -m).sh -O /tmp/miniforge.sh && \
     /bin/bash /tmp/miniforge.sh -b -p ${CONDA_DIR} && \
     rm /tmp/miniforge.sh && \
